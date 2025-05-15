@@ -2,6 +2,13 @@
 @plugin '@tailwindcss/forms';
 
 
+@import '@skeletonlabs/skeleton';
+@import '@skeletonlabs/skeleton/optional/presets';
+@import '@skeletonlabs/skeleton/themes/cerberus';
+
+@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+
+/* 
 @theme {
 	--color-font: var(--color-surface-950);
 	--color-font-dark: var(--color-surface-50);
@@ -107,9 +114,9 @@
 .card {
     @apply bg-surface-100 dark:bg-surface-900;
     border-radius: var(--radius-container);
-}
+} */
 
-
+/* 
 [data-button-root] {
     @apply bg-primary-500 text-xl text-primary-contrast-light;
     border-radius: var(--radius-lg);
@@ -118,5 +125,5 @@
 }
 
 [command-root] {
-    @apply w-full flex flex-col w-full rounded-xl
-}
+    @apply flex flex-col w-full rounded-xl
+} */

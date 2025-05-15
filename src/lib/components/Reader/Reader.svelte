@@ -1,14 +1,35 @@
 <script lang="ts">
-    import { Command } from 'bits-ui';
-    import type { User } from "@auth/sveltekit";
+	import type { User } from '@auth/sveltekit';
+	import Toolbar from './Toolbar.svelte';
+	import Drawer from './Drawer.svelte';
+	import Tools from './Tools/Tools.svelte';
+	import type { Tool } from './types';
 
-    let { user }: { user: User } = $props();
+	interface ReaderProps {
+		user: User;
+		tool: Tool | undefined;
+	}
+
+	let { user, tool }: ReaderProps = $props();
+	let isOpen = $state(false);
 </script>
 
-<Command.Root>
-  <Command.Input
-    placeholder="Search for something..."
-  />
-</Command.Root>
+<div class="h-screen">
+	<div class="grid h-full w-full grid-cols-[auto_1fr]">
+		<Toolbar bind:tool bind:isOpen />
+		<!-- Content -->
+		<div class="flex flex-col items-center justify-center">
+			<pre class="pre">user: {user.name}</pre>
+			<pre class="pre">tool: {tool}</pre>
+			<div>
+				<p>isOpen: {isOpen}</p>
+			</div>
+		</div>
 
-<p>Hello {user.name}</p>
+		<Drawer bind:isOpen>
+			{#if (tool !== undefined)}
+				<Tools {user} {tool}/>
+			{/if}
+		</Drawer>
+	</div>
+</div>

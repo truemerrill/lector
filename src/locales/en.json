@@ -1,0 +1,16 @@
+{
+    "login": "Login",
+    "select_login_method": "Select a login method below.",
+    "documents": "Documents",
+    "read": "Read",
+    "translate": "Translate",
+    "dictionary": "Dictionary",
+    "flashcard": "Flashcard",
+
+    "account": "Account",
+    "name": "Name",
+    "email": "Email",
+    "target_language": "Target Language",
+    "ui_language": "UI Language"
+
+}

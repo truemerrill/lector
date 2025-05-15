@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { signIn } from '@auth/sveltekit/client';
-	import { Button } from 'bits-ui';
+    import { _ } from 'svelte-i18n';
     import { siGithub } from 'simple-icons';
 </script>
 
@@ -8,13 +8,13 @@
 	<div class="card min-w-sm overflow-hidden shadow-lg">
 		<div class="px-6 py-4">
 			<fieldset>
-				<h2 class="h2">Login</h2>
-                <p class="mb-2 opacity-60">Select a login method below.</p>
+				<h2 class="h2">{$_('login')}</h2>
+                <p class="mb-2 opacity-60">{$_('select_login_method')}</p>
 			</fieldset>
 			<fieldset>
-				<Button.Root
+				<button
 					type="button"
-					class="w-full"
+					class="btn preset-filled w-full"
 					onclick={() => signIn('github')}
 					aria-label="login"
 				>
@@ -26,7 +26,7 @@
                             <div>Github</div>
                         </div>
                     </div>
-				</Button.Root>
+				</button>
 			</fieldset>
 		</div>
 	</div>
@@ -47,6 +47,6 @@
         display: inline-block;
         width: 28px;
         margin-right: 0.5em;
-        fill: var(--color-primary-contrast-light);
+        fill: var(--base-font-color-dark);
     }
 </style>
