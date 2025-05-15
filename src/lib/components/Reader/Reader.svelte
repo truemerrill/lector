@@ -2,7 +2,7 @@
 	import type { User } from '@auth/sveltekit';
 	import Toolbar from './Toolbar.svelte';
 	import Drawer from './Drawer.svelte';
-	import Tools from './Tools/Tools.svelte';
+	import { AnyTool } from './tools';
 	import type { Tool } from './types';
 
 	interface ReaderProps {
@@ -28,7 +28,7 @@
 
 		<Drawer bind:isOpen>
 			{#if (tool !== undefined)}
-				<Tools {user} {tool}/>
+				<AnyTool {user} {tool}/>
 			{/if}
 		</Drawer>
 	</div>
