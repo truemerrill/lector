@@ -1,12 +1,15 @@
 <script lang="ts">
-   import { signIn } from "@auth/sveltekit/client"
+    import { page } from '$app/state';
+    import Login from "$lib/components/Login.svelte";
+    import Reader from "$lib/components/Reader/Reader.svelte";
+
+    let user = $state(page.data.session?.user);
+
+    console.log(page.data.session?.user);
 </script>
  
-<div>
-  <img src="/img/logo.svg" alt="Company Logo" />
-  <button onclick={() => signIn('github')} aria-label="login" >Login</button>
-</div> 
-
-
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+{#if user !== undefined}
+    <Reader user={user}/>
+{:else}
+    <Login/>
+{/if}
