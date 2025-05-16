@@ -13,5 +13,8 @@
   "target_language": "Cellingvo",
   "ui_language": "UI -Lingvo",
   "read": "Legu",
-  "save_settings": "Konservu Agordojn"
+  "save_settings": "Konservu Agordojn",
+  "read_web_content": "Legu enhavon de la reto.",
+  "read_pdf_content": "Legu tekston el PDF -dokumento.",
+  "load_content": "Ŝargi enhavon"
 }

@@ -32,11 +32,7 @@
 	function setTool(value: string): void {
 		if (isTool(value)) {
 			tool = value;
-			if (tool !== 'read') {
-				isOpen = true;
-			} else {
-				isOpen = false;
-			}
+			isOpen = true;
 		} else {
 			tool = undefined;
 		}

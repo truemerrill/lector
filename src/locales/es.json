@@ -13,5 +13,8 @@
   "target_language": "Lengua de llegada",
   "ui_language": "Lenguaje de interfaz de usuario",
   "read": "Leer",
-  "save_settings": "Guardar configuración"
+  "save_settings": "Guardar configuración",
+  "read_web_content": "Lea contenido de la web.",
+  "read_pdf_content": "Lea el texto de un documento PDF.",
+  "load_content": "Contenido de carga"
 }

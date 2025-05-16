@@ -13,6 +13,8 @@
     "email": "Email",
     "target_language": "Target Language",
     "ui_language": "UI Language",
-    "save_settings": "Save Settings"
+    "save_settings": "Save Settings",
 
+    "read_web_content": "Read content from the web.",
+    "load_content": "Load Content"
 }

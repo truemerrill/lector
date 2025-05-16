@@ -2,4 +2,9 @@
     import { _ } from 'svelte-i18n';
 </script>
 
-<h1>{$_('dictionary')}</h1>
+
+<div class="flex h-full flex-col p-6">
+	<div class="mb-3">
+		<h3 class="h3">{$_('dictionary')}</h3>
+	</div>
+</div>
