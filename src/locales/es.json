@@ -12,5 +12,6 @@
   "email": "Correo electrónico",
   "target_language": "Lengua de llegada",
   "ui_language": "Lenguaje de interfaz de usuario",
-  "read": "Leer"
+  "read": "Leer",
+  "save_settings": "Guardar configuración"
 }
