@@ -8,9 +8,11 @@
     "flashcard": "Flashcard",
 
     "account": "Account",
+    "logout": "Logout",
     "name": "Name",
     "email": "Email",
     "target_language": "Target Language",
-    "ui_language": "UI Language"
+    "ui_language": "UI Language",
+    "save_settings": "Save Settings"
 
 }

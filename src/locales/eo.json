@@ -5,5 +5,12 @@
   "annotate": "Kano",
   "translate": "Traduki",
   "dictionary": "Vortaro",
-  "flashcard": "Fulmokarto"
+  "flashcard": "Fulmokarto",
+  "account": "Konto",
+  "logout": "Elsaluto",
+  "name": "Nomo",
+  "email": "Retpoŝto",
+  "target_language": "Cellingvo",
+  "ui_language": "UI -Lingvo",
+  "read": "Legu"
 }

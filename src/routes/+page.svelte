@@ -5,7 +5,8 @@
     import { Reader } from "$lib/components/reader";
     import Suspense from '$lib/components/Suspense.svelte';
 
-    let user = $state(page.data.session?.user)
+    let user = $state(page.data.session?.user);
+
 </script>
 
 {#if $isLoading}
@@ -14,7 +15,7 @@
     </div>
 {:else}
     {#if user !== undefined}
-        <Reader user={user} tool={undefined}/>
+        <Reader/>
     {:else}
         <Login/>
     {/if}

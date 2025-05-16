@@ -5,5 +5,12 @@
   "reed": "Leer",
   "translate": "Traducir",
   "dictionary": "Diccionario",
-  "flashcard": "Tarjeta"
+  "flashcard": "Tarjeta",
+  "account": "Cuenta",
+  "logout": "Cierre de sesión",
+  "name": "Nombre",
+  "email": "Correo electrónico",
+  "target_language": "Lengua de llegada",
+  "ui_language": "Lenguaje de interfaz de usuario",
+  "read": "Leer"
 }
