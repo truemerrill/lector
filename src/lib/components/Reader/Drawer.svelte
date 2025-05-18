@@ -75,7 +75,7 @@
 
 	.drawer {
 		height: 100%;
-		background: white;
+		background-color: light-dark(white, var(--color-surface-800));
 		box-shadow: -2px 0 5px rgba(0, 0, 0, 0.15);
 		z-index: 51;
 	}
