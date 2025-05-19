@@ -1,8 +1,8 @@
 <script lang="ts">
-	import '../app.css';
-	import '$lib/i18n';
+    import '../app.css';
+    import '$lib/i18n';
 
-	let { children } = $props();
+    let { children } = $props();
 </script>
 
 {@render children()}

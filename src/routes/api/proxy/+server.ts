@@ -1,11 +1,9 @@
 import type { RequestHandler } from './$types';
 import { z } from 'zod';
 
-
 const ProxyGetSchema = z.object({
     url: z.string().url().nonempty()
 });
-
 
 /**
  * Proxy request to load a remote site.
@@ -46,4 +44,4 @@ export const GET: RequestHandler = async (event) => {
             return new Response(null, { status: 500, statusText: 'Internal error' });
         }
     }
-}
+};

@@ -13,10 +13,7 @@
     }
 
     a:hover {
-        color: light-dark(
-            var(--color-tertiary-700),
-            var(--color-tertiary-300)
-        );
+        color: light-dark(var(--color-tertiary-700), var(--color-tertiary-300));
     }
 
     h1,
