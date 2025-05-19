@@ -1,22 +1,27 @@
 <script lang="ts">
     import type { User } from '@auth/sveltekit';
-    import { onMount } from 'svelte';
-    import Toolbar from './Toolbar.svelte';
-    import Drawer from './Drawer.svelte';
-    import Viewer from './Viewer.svelte';
-    import Suspense from '$lib/components/Suspense.svelte';
-    import { AnyTool } from './tools';
-    import type { Tool } from './types';
     import type { UserSettings } from '$lib/db/types';
+    import type { Tool, Browser } from './types';
+
+    import { onMount } from 'svelte';
     import { page } from '$app/state';
     import { locale } from 'svelte-i18n';
+    import Toolbar from './Toolbar.svelte';
+    import ToolPane from './ToolPane.svelte';
+    import BrowserPane from './BrowserPane.svelte';
+
+    // import AnyTool from './tools/AnyTool.svelte';
 
     let user = $derived(page.data.session?.user);
-    let settings = $state<UserSettings | undefined>(undefined);
+    let userSettings = $state<UserSettings | undefined>(undefined);
     let tool = $state<Tool | undefined>(undefined);
-    let content = $state<HTMLElement | undefined>(undefined);
-    let isOpen = $state(false);
-
+    let browser = $state<Browser>({
+        content: undefined,
+        history: [],
+        index: null,
+        showAddressBar: false
+    });
+    
     async function fetchSettings(user: User | undefined) {
         try {
             const result = await fetch('/api/user');
@@ -39,29 +44,17 @@
     }
 
     onMount(async () => {
-        settings = await fetchSettings(user);
-        locale.set(settings?.langInterface || 'en');
+        userSettings = await fetchSettings(user);
+        locale.set(userSettings?.langInterface || 'en');
     });
 </script>
 
 {#if user}
     <div class="h-screen">
         <div class="grid h-full w-full grid-cols-[auto_1fr]">
-            <Toolbar bind:tool bind:isOpen />
-            <!-- Content -->
-            <div class="flex flex-col">
-                <Viewer bind:content />
-            </div>
-
-            <Drawer bind:isOpen>
-                {#if tool !== undefined && settings !== undefined}
-                    <AnyTool bind:content bind:settings {tool} bind:isOpen />
-                {:else}
-                    <div class="h-full">
-                        <Suspense />
-                    </div>
-                {/if}
-            </Drawer>
+            <Toolbar bind:tool/>
+            <BrowserPane bind:browser/>
+            <ToolPane bind:userSettings bind:tool/>
         </div>
     </div>
 {/if}

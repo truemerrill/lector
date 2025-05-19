@@ -4,6 +4,7 @@
 
     interface DrawerProps {
         isOpen: boolean;
+        close: () => void;
         children?: Snippet;
         transitionDuration?: number;
         className?: string;
@@ -11,23 +12,20 @@
 
     let {
         isOpen = $bindable(),
+        close = $bindable(),
         children,
         transitionDuration = 300,
         className = 'w-1/2'
     }: DrawerProps = $props();
 
-    function closeDrawer(): void {
-        isOpen = false;
-    }
-
     function handleClick(event: MouseEvent): void {
         event.stopPropagation();
-        closeDrawer();
+        close();
     }
 
     function handleKeypress(event: KeyboardEvent): void {
         if (event.key === 'Escape') {
-            closeDrawer();
+            close();
         }
     }
 

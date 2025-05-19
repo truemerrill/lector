@@ -1,30 +1,32 @@
 <script lang="ts">
+    import type { UserSettings } from '$lib/db/types';
+    import type { Tool } from '../types';
     import { signOut } from '@auth/sveltekit/client';
     import { _, locale } from 'svelte-i18n';
-    import type { UserSettings } from '$lib/db/types';
+
     let {
-        settings = $bindable(),
-        isOpen = $bindable()
-    }: { settings: UserSettings; isOpen: boolean } = $props();
+        userSettings: userSettings = $bindable(),
+        tool = $bindable()
+    }: { userSettings: UserSettings; tool: Tool | undefined } = $props();
 
     async function handleSave() {
         try {
             const result = await fetch('/api/user', {
                 method: 'POST',
-                body: JSON.stringify(settings)
+                body: JSON.stringify(userSettings)
             });
             if (result.ok) {
-                settings = await result.json();
+                userSettings = await result.json();
             }
         } catch (err) {
             console.error(err);
         }
 
-        isOpen = false;
+        tool = undefined;
     }
 
     $effect(() => {
-        locale.set(settings.langInterface || 'en');
+        locale.set(userSettings.langInterface || 'en');
     });
 </script>
 
@@ -45,15 +47,15 @@
         <form class="max-w mt-4 space-y-4">
             <label class="label">
                 <span class="label-text">{$_('name')}</span>
-                <input type="text" class="input" bind:value={settings.name} readonly />
+                <input type="text" class="input" bind:value={userSettings.name} readonly />
             </label>
             <label class="label">
                 <span class="label-text">{$_('email')}</span>
-                <input type="text" class="input" bind:value={settings.email} readonly />
+                <input type="text" class="input" bind:value={userSettings.email} readonly />
             </label>
             <label class="label">
                 <span class="label-text">{$_('target_language')}</span>
-                <select class="select" bind:value={settings.langTarget}>
+                <select class="select" bind:value={userSettings.langTarget}>
                     <option value="en">English</option>
                     <option value="es">Español</option>
                     <option value="eo">Esperanto</option>
@@ -61,7 +63,7 @@
             </label>
             <label class="label">
                 <span class="label-text">{$_('ui_language')}</span>
-                <select class="select" bind:value={settings.langInterface}>
+                <select class="select" bind:value={userSettings.langInterface}>
                     <option value="en">English</option>
                     <option value="es">Español</option>
                     <option value="eo">Esperanto</option>

@@ -1,8 +1,23 @@
-export type Tool = 'documents' | 'read' | 'translate' | 'dictionary' | 'flashcard' | 'account';
+export type Tool = 'translate' | 'dictionary' | 'flashcard' | 'account';
 
 export type Language = 'en' | 'es' | 'eo';
 
-export interface Settings {
-    targetLanguage: Language;
-    interfaceLanguage: Language;
+/**
+ * The user settings
+ */
+// export interface Settings {
+//     targetLanguage: Language;
+//     interfaceLanguage: Language;
+// }
+
+
+/**
+ * The browser state
+ */
+export interface Browser {
+    content: HTMLElement | undefined;
+    history: URL[];
+    index: number | null;
+    showAddressBar: boolean;
 }
+
