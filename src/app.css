@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+
+@import '@skeletonlabs/skeleton';
+@import '@skeletonlabs/skeleton/optional/presets';
+@import '@skeletonlabs/skeleton/themes/cerberus';
+
+@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+
+
+/* 
+@theme {
+	--color-font: var(--color-surface-950);
+	--color-font-dark: var(--color-surface-50);
+    --color-anchor: var(--color-primary-500);
+	--color-anchor-dark: var(--color-primary-500);
+    --color-background: var(--color-surface-50);
+    --color-background-dark: var(--color-surface-950);
+
+    --radius-base: 0.375rem;
+    --radius-container: 0.75rem;
+
+    --color-primary-50: oklch(100% 0 none);
+	--color-primary-100: oklch(89.24% 0.04 293.23deg);
+	--color-primary-200: oklch(78.34% 0.08 291.97deg);
+	--color-primary-300: oklch(67.45% 0.13 289.28deg);
+	--color-primary-400: oklch(56.69% 0.17 286.44deg);
+	--color-primary-500: oklch(46.77% 0.21 281.24deg);
+	--color-primary-600: oklch(45.74% 0.18 284.05deg);
+	--color-primary-700: oklch(44.94% 0.14 286.6deg);
+	--color-primary-800: oklch(44.94% 0.09 289.01deg);
+	--color-primary-900: oklch(45.04% 0.05 290.71deg);
+	--color-primary-950: oklch(45.68% 0 none);
+
+    --color-primary-contrast-dark: var(--color-primary-950);
+	--color-primary-contrast-light: var(--color-primary-50);
+	--color-primary-contrast-50: var(--color-primary-contrast-dark);
+	--color-primary-contrast-100: var(--color-primary-contrast-dark);
+	--color-primary-contrast-200: var(--color-primary-contrast-dark);
+	--color-primary-contrast-300: var(--color-primary-contrast-light);
+	--color-primary-contrast-400: var(--color-primary-contrast-light);
+	--color-primary-contrast-500: var(--color-primary-contrast-light);
+	--color-primary-contrast-600: var(--color-primary-contrast-light);
+	--color-primary-contrast-700: var(--color-primary-contrast-light);
+	--color-primary-contrast-800: var(--color-primary-contrast-light);
+	--color-primary-contrast-900: var(--color-primary-contrast-light);
+	--color-primary-contrast-950: var(--color-primary-contrast-light);
+
+    --color-secondary-50: oklch(100% 0 none);
+	--color-secondary-100: oklch(94.92% 0.03 183.28deg);
+	--color-secondary-200: oklch(90.01% 0.06 182.35deg);
+	--color-secondary-300: oklch(85.06% 0.08 182.12deg);
+	--color-secondary-400: oklch(80.67% 0.1 180.53deg);
+	--color-secondary-500: oklch(76.64% 0.12 178.65deg);
+	--color-secondary-600: oklch(70.52% 0.11 178.79deg);
+	--color-secondary-700: oklch(64.28% 0.1 178.95deg);
+	--color-secondary-800: oklch(57.65% 0.08 178.86deg);
+	--color-secondary-900: oklch(51.12% 0.07 178.91deg);
+	--color-secondary-950: oklch(44.42% 0.05 178.77deg);
+
+	--color-surface-50: oklch(100% 0 none);
+	--color-surface-100: oklch(94.24% 0.02 316.09deg);
+	--color-surface-200: oklch(88.49% 0.03 317.77deg);
+	--color-surface-300: oklch(82.77% 0.04 317.72deg);
+	--color-surface-400: oklch(76.92% 0.06 318.15deg);
+	--color-surface-500: oklch(70.93% 0.08 317.6deg);
+	--color-surface-600: oklch(63.09% 0.06 314.35deg);
+	--color-surface-700: oklch(55.02% 0.05 308.92deg);
+	--color-surface-800: oklch(46.31% 0.03 298.15deg);
+	--color-surface-900: oklch(37.63% 0.02 270.81deg);
+	--color-surface-950: oklch(28.58% 0.02 212.29deg);
+	--color-surface-contrast-dark: var(--color-surface-950);
+	--color-surface-contrast-light: var(--color-surface-50);
+}
+
+@layer base {
+    body {
+        @apply bg-surface-50 dark:bg-surface-950;
+        min-height: 100vh;
+        margin: 0;
+        background-attachment: fixed;
+    }
+
+    p {
+        @apply text-lg text-font dark:text-font-dark;
+    }
+
+    h1 {
+        @apply text-4xl text-primary-500 mb-8;
+        text-align: center;
+    }
+
+    h2 {
+        @apply text-4xl mb-6 font-bold;
+    }
+
+    h3 {
+        @apply text-xl text-primary-500 mb-4;
+    }
+
+    h4 {
+        @apply text-lg text-primary-500;
+    }
+
+    a {
+        @apply text-anchor;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.card {
+    @apply bg-surface-100 dark:bg-surface-900;
+    border-radius: var(--radius-container);
+} */
+
+/* 
+[data-button-root] {
+    @apply bg-primary-500 text-xl text-primary-contrast-light;
+    border-radius: var(--radius-lg);
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+
+[command-root] {
+    @apply flex flex-col w-full rounded-xl
+} */

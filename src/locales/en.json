@@ -1,0 +1,20 @@
+{
+    "login": "Login",
+    "select_login_method": "Select a login method below.",
+    "documents": "Documents",
+    "read": "Read",
+    "translate": "Translate",
+    "dictionary": "Dictionary",
+    "flashcard": "Flashcard",
+
+    "account": "Account",
+    "logout": "Logout",
+    "name": "Name",
+    "email": "Email",
+    "target_language": "Target Language",
+    "ui_language": "UI Language",
+    "save_settings": "Save Settings",
+
+    "read_web_content": "Read content from the web.",
+    "load_content": "Load Content"
+}
