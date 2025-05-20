@@ -15,7 +15,7 @@
      * 
      * @param event
      */
-    async function handleClick(event: MouseEvent): Promise<void> {
+    async function handleClick(event: Event): Promise<void> {
         const target = event.target as Element | null;
         if (!target) return;
 
@@ -30,22 +30,31 @@
         } 
     }
 
+    function handleMouseUp(event: MouseEvent): void {
+        const selection = window.getSelection();
+        const text = selection?.toString();
+        browser = {...browser, selection: text};
+    }
+
 </script>
 
 
 <div class="flex flex-col h-screen">
     <AddressBar bind:browser />
     <div class="flex flex-row justify-center overflow-auto">
-        <button 
+        <div 
             class="prose prose-lg content w-full max-w-prose px-4 text-left"
+            role="button"
             tabindex="0"
             onclick={handleClick}
+            onkeydown={handleClick}
+            onmouseup={handleMouseUp}
             id="browser-content">
             {#if browser.content}
                 {@html browser.content.outerHTML}
             {:else}
                 <a href="https://google.com" class="a">Google</a>
             {/if}
-        </button>
+        </div>
     </div>
 </div>

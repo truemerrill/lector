@@ -7,7 +7,8 @@ export type Language = 'en' | 'es' | 'eo';
  */
 export interface Browser {
     content?: HTMLElement;
-    urlString?: string
+    selection?: string;
+    urlString?: string;
     history: string[];
     index: number | null;
     status: number;
