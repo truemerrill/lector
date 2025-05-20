@@ -16,10 +16,9 @@
     let userSettings = $state<UserSettings | undefined>(undefined);
     let tool = $state<Tool | undefined>(undefined);
     let browser = $state<Browser>({
-        content: undefined,
         history: [],
         index: null,
-        showAddressBar: false
+        status: 500,
     });
     
     async function fetchSettings(user: User | undefined) {
@@ -50,8 +49,8 @@
 </script>
 
 {#if user}
-    <div class="h-screen">
-        <div class="grid h-full w-full grid-cols-[auto_1fr]">
+    <div class="h-screen w-screen">
+        <div>
             <Toolbar bind:tool/>
             <BrowserPane bind:browser/>
             <ToolPane bind:userSettings bind:tool/>

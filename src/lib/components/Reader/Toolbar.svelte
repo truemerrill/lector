@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { Navigation } from '@skeletonlabs/skeleton-svelte';
+    import Dock from './Dock.svelte';
+    import DockTile from './DockTile.svelte';
     import { _ } from 'svelte-i18n';
     import type { Tool } from './types';
 
@@ -29,19 +30,19 @@
     }
 </script>
 
-<Navigation.Rail value={tool} onValueChange={setTool}>
+<Dock value={tool} onValueChange={setTool}>
     {#snippet tiles()}
-        <Navigation.Tile id="translate" label={$_('translate')} active=""
-            ><IconLanguages /></Navigation.Tile
-        >
-        <Navigation.Tile id="dictionary" label={$_('dictionary')} active=""
-            ><IconBookA /></Navigation.Tile
-        >
-        <Navigation.Tile id="flashcard" label={$_('flashcard')} active=""
-            ><IconSquareAsterisk /></Navigation.Tile
-        >
-        <Navigation.Tile id="account" label={$_('account')} active=""
-            ><IconCircleUser /></Navigation.Tile
-        >
+        <DockTile label={$_('translate')} onclick={() => setTool('translate')}>
+            <IconLanguages />
+        </DockTile>
+        <DockTile label={$_('dictionary')} onclick={() => setTool('dictionary')}>
+            <IconBookA />
+        </DockTile>
+        <DockTile label={$_('flashcard')} onclick={() => setTool('flashcard')}>
+            <IconSquareAsterisk />
+        </DockTile>
+        <DockTile label={$_('account')} onclick={() => setTool('account')}>
+            <IconCircleUser />
+        </DockTile>
     {/snippet}
-</Navigation.Rail>
+</Dock>
