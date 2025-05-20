@@ -1,4 +1,4 @@
-import type { Browser } from './types';
+import type { Browser } from '$lib/types';
 import { proxy, rewrite, mount } from '$lib/proxy';
 
 

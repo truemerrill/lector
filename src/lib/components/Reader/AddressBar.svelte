@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Browser } from './types';
+    import type { Browser } from '$lib/types';
     import ArrowLeft from '@lucide/svelte/icons/arrow-left';
     import ArrowRight from '@lucide/svelte/icons/arrow-right';
     import RotateCw from '@lucide/svelte/icons/rotate-cw';
