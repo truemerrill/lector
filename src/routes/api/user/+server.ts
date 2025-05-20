@@ -1,5 +1,6 @@
 import type { RequestHandler } from './$types';
 import { db } from '$lib/db';
+import { LanguageEnum } from '$lib/lang';
 import { userTable } from '$lib/db/schema';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
@@ -23,8 +24,6 @@ export const GET: RequestHandler = async (event) => {
         return new Response(JSON.stringify(user));
     }
 };
-
-const LanguageEnum = z.enum(['en', 'es', 'eo']);
 
 const UserUpsertSchema = z.object({
     email: z.string().email(),

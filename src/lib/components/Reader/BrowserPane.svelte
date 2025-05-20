@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Browser } from './types';
+    import type { Browser } from '$lib/types';
     import AddressBar from './AddressBar.svelte';
     import './browser.css';
     import { goto } from './browser';

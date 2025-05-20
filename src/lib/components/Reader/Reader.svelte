@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { User } from '@auth/sveltekit';
     import type { UserSettings } from '$lib/db/types';
-    import type { Tool, Browser } from './types';
+    import type { Tool, Browser } from '$lib/types';
 
     import { onMount } from 'svelte';
     import { page } from '$app/state';
@@ -9,8 +9,6 @@
     import Toolbar from './Toolbar.svelte';
     import ToolPane from './ToolPane.svelte';
     import BrowserPane from './BrowserPane.svelte';
-
-    // import AnyTool from './tools/AnyTool.svelte';
 
     let user = $derived(page.data.session?.user);
     let userSettings = $state<UserSettings | undefined>(undefined);
@@ -53,7 +51,7 @@
         <div>
             <Toolbar bind:tool/>
             <BrowserPane bind:browser/>
-            <ToolPane bind:userSettings bind:tool/>
+            <ToolPane bind:userSettings bind:tool browser={browser}/>
         </div>
     </div>
 {/if}

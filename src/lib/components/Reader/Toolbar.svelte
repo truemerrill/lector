@@ -2,7 +2,7 @@
     import Dock from './Dock.svelte';
     import DockTile from './DockTile.svelte';
     import { _ } from 'svelte-i18n';
-    import type { Tool } from './types';
+    import type { Tool } from '$lib/types';
 
     import IconBookA from '@lucide/svelte/icons/book-a';
     import IconLanguages from '@lucide/svelte/icons/languages';

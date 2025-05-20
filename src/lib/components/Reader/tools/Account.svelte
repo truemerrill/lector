@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { UserSettings } from '$lib/db/types';
-    import type { Tool } from '../types';
+    import type { Tool } from '$lib/types';
     import { signOut } from '@auth/sveltekit/client';
     import { _, locale } from 'svelte-i18n';
 

@@ -47,7 +47,7 @@ beforeEach(() => {
 
 
 import { goto, back, forward } from './browser';
-import type { Browser } from './types';
+import type { Browser } from '../../types';
 
 
 describe('goto', () => {

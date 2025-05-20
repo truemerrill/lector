@@ -15,3 +15,9 @@ export interface Browser {
     error?: Error;
 }
 
+export interface Translation {
+    translatedText: string,
+    alternatives?: string[]
+}
+
+export type Translator = (text: string, source: Language, target: Language) => Promise<Translation>;

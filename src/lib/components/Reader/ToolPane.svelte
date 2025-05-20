@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Tool } from './types';
+    import type { Browser, Tool } from '$lib/types';
     import type { UserSettings } from '$lib/db/types';
 
     import Suspense from '$lib/components/Suspense.svelte';
@@ -12,9 +12,11 @@
     let {
         userSettings = $bindable(),
         tool = $bindable(),
+        browser,
     }: {
         userSettings: UserSettings | undefined;
         tool: Tool | undefined;
+        browser: Browser;
     } = $props();
 
     // Open the drawer if the tool is defined
@@ -30,7 +32,7 @@
     {#if tool !== undefined && userSettings !== undefined}
         <div class="card h-full">
             {#if tool === 'translate'}
-                <Translate />
+                <Translate userSettings={userSettings} browser={browser} />
             {:else if tool === 'dictionary'}
                 <Dictionary />
             {:else if tool === 'flashcard'}
