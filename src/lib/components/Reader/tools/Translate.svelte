@@ -15,11 +15,11 @@
     let text = $state<string>(browser.selection ? browser.selection : "");
     let translation = $state<string>('');
 
-    const { langTarget, langInterface } = userSettings;
+    const { langTarget, langNative } = userSettings;
 
     async function handleTranslate(event: MouseEvent): Promise<void> {
         const source = langTarget || 'en';
-        const target = langInterface || 'en';
+        const target = langNative || 'en';
         const t = await libreTranslate(text, source, target);
         translation = t.translatedText;
     }

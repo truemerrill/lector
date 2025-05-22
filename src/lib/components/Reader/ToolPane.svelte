@@ -36,7 +36,7 @@
             {:else if tool === 'dictionary'}
                 <Dictionary />
             {:else if tool === 'flashcard'}
-                <Flashcard />
+                <Flashcard userSettings={userSettings} browser={browser} />
             {:else if tool === 'account'}
                 <Account bind:userSettings bind:tool />
             {:else}

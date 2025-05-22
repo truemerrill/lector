@@ -3,6 +3,7 @@
     import type { Tool } from '$lib/types';
     import { signOut } from '@auth/sveltekit/client';
     import { _, locale } from 'svelte-i18n';
+    import { toaster } from '../toaster';
 
     let {
         userSettings: userSettings = $bindable(),
@@ -18,6 +19,10 @@
             if (result.ok) {
                 userSettings = await result.json();
             }
+
+            toaster.info({
+                title: $_('saved_settings')
+            });
         } catch (err) {
             console.error(err);
         }
@@ -52,6 +57,14 @@
             <label class="label">
                 <span class="label-text">{$_('email')}</span>
                 <input type="text" class="input" bind:value={userSettings.email} readonly />
+            </label>
+            <label class="label">
+                <span class="label-text">{$_('native_language')}</span>
+                <select class="select" bind:value={userSettings.langNative}>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="eo">Esperanto</option>
+                </select>
             </label>
             <label class="label">
                 <span class="label-text">{$_('target_language')}</span>

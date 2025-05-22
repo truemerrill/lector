@@ -28,6 +28,7 @@ export const GET: RequestHandler = async (event) => {
 const UserUpsertSchema = z.object({
     email: z.string().email(),
     name: z.string().min(1),
+    langNative: LanguageEnum.optional(),
     langTarget: LanguageEnum.optional(),
     langInterface: LanguageEnum.optional()
 });

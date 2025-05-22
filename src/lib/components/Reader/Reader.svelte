@@ -3,12 +3,15 @@
     import type { UserSettings } from '$lib/db/types';
     import type { Tool, Browser } from '$lib/types';
 
+    import { Toaster } from '@skeletonlabs/skeleton-svelte';
+
     import { onMount } from 'svelte';
     import { page } from '$app/state';
     import { locale } from 'svelte-i18n';
     import Toolbar from './Toolbar.svelte';
     import ToolPane from './ToolPane.svelte';
     import BrowserPane from './BrowserPane.svelte';
+    import { toaster } from './toaster';
 
     let user = $derived(page.data.session?.user);
     let userSettings = $state<UserSettings | undefined>(undefined);
@@ -47,6 +50,7 @@
 </script>
 
 {#if user}
+    <Toaster {toaster}></Toaster>
     <div class="h-screen w-screen">
         <div>
             <Toolbar bind:tool/>
