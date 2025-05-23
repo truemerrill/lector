@@ -9,15 +9,10 @@
     import IconSquareAsterisk from '@lucide/svelte/icons/square-asterisk';
     import IconCircleUser from '@lucide/svelte/icons/circle-user';
 
-    let { tool = $bindable() }: {tool: Tool | undefined} = $props();
+    let { tool = $bindable() }: { tool: Tool | undefined } = $props();
 
     function isTool(value: any): value is Tool {
-        const validTools: Tool[] = [
-            'dictionary',
-            'flashcard',
-            'translate',
-            'account'
-        ];
+        const validTools: Tool[] = ['dictionary', 'flashcard', 'translate', 'account'];
         return validTools.includes(value);
     }
 

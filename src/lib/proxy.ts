@@ -1,46 +1,52 @@
 import DOMPurify from 'dompurify';
 import { Readability } from '@mozilla/readability';
 
-
 function clean(url: URL, htmlString: string): string {
     DOMPurify.removeAllHooks();
-    DOMPurify.addHook(
-        'uponSanitizeElement',
-        (node, data) => {
-            if (node instanceof HTMLAnchorElement && node.hasAttribute('href')) {
-                try {
-                    const resolved = new URL(node.getAttribute('href')!, url);
-                    if (['http:', 'https:'].includes(resolved.protocol)) {
-                        node.setAttribute('data-reader-link', 'true');
-                        node.setAttribute('target', '_self');
-                        node.setAttribute('rel', 'noopener noreferrer');
-                    } else {
-                        // unsafe protocol
-                        node.removeAttribute('href');
-                    }
-                } catch {
-                    // invalid URL
+    DOMPurify.addHook('uponSanitizeElement', (node, data) => {
+        if (node instanceof HTMLAnchorElement && node.hasAttribute('href')) {
+            try {
+                const resolved = new URL(node.getAttribute('href')!, url);
+                if (['http:', 'https:'].includes(resolved.protocol)) {
+                    node.setAttribute('data-reader-link', 'true');
+                    node.setAttribute('target', '_self');
+                    node.setAttribute('rel', 'noopener noreferrer');
+                } else {
+                    // unsafe protocol
                     node.removeAttribute('href');
                 }
-            }
-
-            if (node instanceof HTMLImageElement && node.hasAttribute('src')) {
-                try {
-                    const resolved = new URL(node.getAttribute('src')!, url);
-                    node.setAttribute('src', resolved.toString());
-                } catch {
-                    node.removeAttribute('src');
-                }
+            } catch {
+                // invalid URL
+                node.removeAttribute('href');
             }
         }
-    );
+
+        if (node instanceof HTMLImageElement && node.hasAttribute('src')) {
+            try {
+                const resolved = new URL(node.getAttribute('src')!, url);
+                node.setAttribute('src', resolved.toString());
+            } catch {
+                node.removeAttribute('src');
+            }
+        }
+    });
 
     return DOMPurify.sanitize(htmlString, {
         ALLOWED_TAGS: ['a', 'p', 'h1', 'h2', 'h3', 'ul', 'li', 'blockquote', 'pre', 'code', 'img'],
-        ALLOWED_ATTR: ['href', 'target', 'rel', 'name', 'src', 'alt', 'title', 'width', 'height', 'loading']
+        ALLOWED_ATTR: [
+            'href',
+            'target',
+            'rel',
+            'name',
+            'src',
+            'alt',
+            'title',
+            'width',
+            'height',
+            'loading'
+        ]
     });
 }
-
 
 function readable(url: URL, htmlString: string): string {
     const parser = new DOMParser();
@@ -71,17 +77,15 @@ function readable(url: URL, htmlString: string): string {
     return content;
 }
 
-
 interface ProxyResponse {
-    htmlString?: string,
-    error?: Error,
-    status: number
-};
-
+    htmlString?: string;
+    error?: Error;
+    status: number;
+}
 
 /**
  * Load and clean an external site through the proxy.
- * 
+ *
  * @param url - the source URL
  * @param rewrite - a function that rewrites the source URL to a new URL that
  *      goes through the proxy.
@@ -90,24 +94,24 @@ interface ProxyResponse {
 export async function proxy(url: URL, rewrite: (url: URL) => URL): Promise<ProxyResponse> {
     const response = await fetch(rewrite(url));
     if (!response.ok) {
-        const msg = `Proxy failed to fetch ${url} with error ` +
+        const msg =
+            `Proxy failed to fetch ${url} with error ` +
             `${response.status} - ${response.statusText}`;
         const error = new Error(msg);
-        return {error, status: response.status};
+        return { error, status: response.status };
     }
-    const htmlString = await response.text()
+    const htmlString = await response
+        .text()
         .then((htmlString) => clean(url, htmlString))
         .then((htmlString) => readable(url, htmlString));
-    return {htmlString, status: response.status};
+    return { htmlString, status: response.status };
 }
-
 
 export function rewrite(url: URL): URL {
     const rewritten = new URL('/api/proxy', location.origin);
     rewritten.searchParams.set('url', url.toString());
     return rewritten;
 }
-
 
 export function mount(content: string): HTMLElement {
     const container = document.createElement('div');
@@ -116,5 +120,5 @@ export function mount(content: string): HTMLElement {
     if (!payload) {
         throw new Error('Failed to mount parsed HTML');
     }
-    return payload
+    return payload;
 }

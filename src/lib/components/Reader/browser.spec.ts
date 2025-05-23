@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { JSDOM } from 'jsdom';
 
-
 const STATIC_HTML = `
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +20,7 @@ const STATIC_HTML = `
 /* Mock `proxy` so we can test without a backend */
 vi.mock('$lib/proxy', async (importOriginal) => {
     return {
-        ... await importOriginal<typeof import('$lib/proxy')>(),
+        ...(await importOriginal<typeof import('$lib/proxy')>()),
         proxy: vi.fn(async (url: URL, rewrite: (url: URL) => URL) => {
             if (url.host === 'test.com') {
                 return {
@@ -35,103 +34,99 @@ vi.mock('$lib/proxy', async (importOriginal) => {
                 };
             }
         })
-    }
+    };
 });
-
 
 /* Mock the DOM */
 beforeEach(() => {
     const dom = new JSDOM('<!DOCTYPE html><html lang="en"></html>');
     vi.stubGlobal('document', dom.window.document);
-})
-
+});
 
 import { goto, back, forward } from './browser';
 import type { Browser } from '../../types';
-
 
 describe('goto', () => {
     it('works when the history is empty', async () => {
         const browser: Browser = {
             history: [],
             index: null,
-            status: 200,
+            status: 200
         };
 
-        const b = await goto(browser, "https://test.com");
+        const b = await goto(browser, 'https://test.com');
 
         expect(b.status).toBe(200);
         expect(b.error).toBeUndefined();
         expect(b.content).toBeTruthy();
         expect(b.history.length).toBe(1);
-        expect(b.history.at(0)).toBe("https://test.com");
-        expect(b.urlString).toBe("https://test.com");
+        expect(b.history.at(0)).toBe('https://test.com');
+        expect(b.urlString).toBe('https://test.com');
     });
 
-    it ('works when the history is populated', async () => {
+    it('works when the history is populated', async () => {
         const browser: Browser = {
-            history: ["https://google.com"],
-            urlString: "https://google.com",
+            history: ['https://google.com'],
+            urlString: 'https://google.com',
             index: 0,
-            status: 200,
+            status: 200
         };
 
-        const b = await goto(browser, "https://test.com");
+        const b = await goto(browser, 'https://test.com');
 
         expect(b.status).toBe(200);
         expect(b.error).toBeUndefined();
         expect(b.content).toBeTruthy();
         expect(b.history.length).toBe(2);
-        expect(b.history.at(0)).toBe("https://google.com");
-        expect(b.history.at(1)).toBe("https://test.com"); 
-        expect(b.urlString).toBe("https://test.com"); 
+        expect(b.history.at(0)).toBe('https://google.com');
+        expect(b.history.at(1)).toBe('https://test.com');
+        expect(b.urlString).toBe('https://test.com');
     });
 
-    it ('works when the user has pushed back', async () => {
+    it('works when the user has pushed back', async () => {
         const browser: Browser = {
-            history: ["https://google.com", "https://facebook.com"],
-            urlString: "https://google.com",
+            history: ['https://google.com', 'https://facebook.com'],
+            urlString: 'https://google.com',
             index: 0,
-            status: 200,
+            status: 200
         };
 
-        const b = await goto(browser, "https://test.com");
+        const b = await goto(browser, 'https://test.com');
 
         expect(b.status).toBe(200);
         expect(b.error).toBeUndefined();
         expect(b.content).toBeTruthy();
         expect(b.history.length).toBe(2);
-        expect(b.history.at(0)).toBe("https://google.com");
-        expect(b.history.at(1)).toBe("https://test.com"); 
-        expect(b.urlString).toBe("https://test.com"); 
+        expect(b.history.at(0)).toBe('https://google.com');
+        expect(b.history.at(1)).toBe('https://test.com');
+        expect(b.urlString).toBe('https://test.com');
     });
 
-    it ('works when the user has pushed back to an empty page', async () => {
+    it('works when the user has pushed back to an empty page', async () => {
         const browser: Browser = {
-            history: ["https://google.com", "https://facebook.com"],
-            urlString: "https://google.com",
+            history: ['https://google.com', 'https://facebook.com'],
+            urlString: 'https://google.com',
             index: null,
-            status: 200,
+            status: 200
         };
 
-        const b = await goto(browser, "https://test.com");
+        const b = await goto(browser, 'https://test.com');
 
         expect(b.status).toBe(200);
         expect(b.error).toBeUndefined();
         expect(b.content).toBeTruthy();
         expect(b.history.length).toBe(1);
-        expect(b.history.at(0)).toBe("https://test.com"); 
-        expect(b.urlString).toBe("https://test.com"); 
+        expect(b.history.at(0)).toBe('https://test.com');
+        expect(b.urlString).toBe('https://test.com');
     });
 });
-
 
 describe('back', () => {
     it('does nothing if the user is at the empty page', async () => {
         const browser: Browser = {
             history: [],
             index: null,
-            status: 200,
+            status: 200
         };
 
         const b = await back(browser);
@@ -145,10 +140,10 @@ describe('back', () => {
 
     it('goes back to an empty page', async () => {
         const browser: Browser = {
-            history: ["https://google.com"],
-            urlString: "https://google.com",
+            history: ['https://google.com'],
+            urlString: 'https://google.com',
             index: 0,
-            status: 200,
+            status: 200
         };
 
         const b = await back(browser);
@@ -164,10 +159,10 @@ describe('back', () => {
 
     it('goes back to the prior page', async () => {
         const browser: Browser = {
-            history: ["https://test.com", "https://facebook.com"],
-            urlString: "https://facebook.com",
+            history: ['https://test.com', 'https://facebook.com'],
+            urlString: 'https://facebook.com',
             index: 1,
-            status: 200,
+            status: 200
         };
 
         const b = await back(browser);
@@ -181,26 +176,25 @@ describe('back', () => {
     });
 });
 
-
 describe('forward', () => {
     it('does nothing if the user is at the top of the history', async () => {
         const browser: Browser = {
-            history: ["https://google.com", "https://facebook.com"],
-            urlString: "https://google.com",
+            history: ['https://google.com', 'https://facebook.com'],
+            urlString: 'https://google.com',
             index: 1,
-            status: 200,
+            status: 200
         };
 
         const b = await forward(browser);
-        expect (b).toBe(browser);
+        expect(b).toBe(browser);
     });
 
     it('works if the user is at an empty page', async () => {
         const browser: Browser = {
-            history: ["https://test.com", "https://facebook.com"],
+            history: ['https://test.com', 'https://facebook.com'],
             urlString: undefined,
             index: null,
-            status: 200,
+            status: 200
         };
 
         const b = await forward(browser);
@@ -214,10 +208,10 @@ describe('forward', () => {
 
     it('works if the user is at a page', async () => {
         const browser: Browser = {
-            history: ["https://google.com", "https://test.com"],
+            history: ['https://google.com', 'https://test.com'],
             urlString: undefined,
             index: 0,
-            status: 200,
+            status: 200
         };
 
         const b = await forward(browser);

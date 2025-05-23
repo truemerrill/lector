@@ -19,9 +19,9 @@
     let browser = $state<Browser>({
         history: [],
         index: null,
-        status: 500,
+        status: 500
     });
-    
+
     async function fetchSettings(user: User | undefined) {
         try {
             const result = await fetch('/api/user');
@@ -53,9 +53,9 @@
     <Toaster {toaster}></Toaster>
     <div class="h-screen w-screen">
         <div>
-            <Toolbar bind:tool/>
-            <BrowserPane bind:browser/>
-            <ToolPane bind:userSettings bind:tool browser={browser}/>
+            <Toolbar bind:tool />
+            <BrowserPane bind:browser />
+            <ToolPane bind:userSettings bind:tool {browser} />
         </div>
     </div>
 {/if}

@@ -5,7 +5,7 @@
     import { libreTranslate } from '$lib/translate';
     import { create, clear, save } from '$lib/flashcard';
     import { toaster } from '../toaster';
-    
+
     let {
         userSettings,
         browser
@@ -14,7 +14,7 @@
         browser: Browser;
     } = $props();
 
-    let text = $state<string>(browser.selection ? browser.selection : "");
+    let text = $state<string>(browser.selection ? browser.selection : '');
     let translation = $state<string>('');
 
     const { langTarget, langNative } = userSettings;
@@ -45,7 +45,6 @@
             title: `${$_('deleted')} ${deleted.length} ${$_('flashcards')}`
         });
     }
-
 </script>
 
 <div class="flex h-full flex-col p-6">
@@ -66,13 +65,23 @@
                 <span class="label-text">{$_('back')}</span>
                 <textarea class="textarea" rows="5" bind:value={translation}></textarea>
             </label>
-            {#if text !== ''} 
+            {#if text !== ''}
                 {#if translation === ''}
-                    <button type="button" class="btn preset-filled" onclick={handleTranslate} aria-label="logout">
+                    <button
+                        type="button"
+                        class="btn preset-filled"
+                        onclick={handleTranslate}
+                        aria-label="logout"
+                    >
                         {$_('translate_text')}
                     </button>
                 {:else}
-                    <button type="button" class="btn preset-filled" onclick={handleSave} aria-label="logout">
+                    <button
+                        type="button"
+                        class="btn preset-filled"
+                        onclick={handleSave}
+                        aria-label="logout"
+                    >
                         {$_('save_card')}
                     </button>
                 {/if}
@@ -85,8 +94,13 @@
         <button type="button" class="btn preset-filled" onclick={handleExport} aria-label="logout">
             {$_('export_to_anki')}
         </button>
-        <button type="button" class="btn preset-tonal-secondary" onclick={handleClear} aria-label="logout">
+        <button
+            type="button"
+            class="btn preset-tonal-secondary"
+            onclick={handleClear}
+            aria-label="logout"
+        >
             {$_('delete_all_flashcards')}
-        </button> 
+        </button>
     </div>
 </div>

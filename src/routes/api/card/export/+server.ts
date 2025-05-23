@@ -5,7 +5,6 @@ import { eq } from 'drizzle-orm';
 
 import AnkiExport from 'anki-apkg-export';
 
-
 export const GET: RequestHandler = async (event) => {
     const session = await event.locals.auth();
 
@@ -29,10 +28,10 @@ export const GET: RequestHandler = async (event) => {
 
     const zip = await apkg.save();
     return new Response(zip, {
-		status: 200,
-		headers: {
-			'Content-Type': 'application/zip',
-			'Content-Disposition': 'attachment; filename="flashcards.apkg"'
-		}
-	});
-}
+        status: 200,
+        headers: {
+            'Content-Type': 'application/zip',
+            'Content-Disposition': 'attachment; filename="flashcards.apkg"'
+        }
+    });
+};

@@ -12,7 +12,7 @@
         browser: Browser;
     } = $props();
 
-    let text = $state<string>(browser.selection ? browser.selection : "");
+    let text = $state<string>(browser.selection ? browser.selection : '');
     let translation = $state<string>('');
 
     const { langTarget, langNative } = userSettings;
@@ -23,7 +23,6 @@
         const t = await libreTranslate(text, source, target);
         translation = t.translatedText;
     }
-
 </script>
 
 <div class="flex h-full flex-col p-6">
@@ -46,7 +45,12 @@
 
     <div>
         <hr class="hr mt-4 mb-4" />
-        <button type="button" class="btn preset-filled" onclick={handleTranslate} aria-label="logout">
+        <button
+            type="button"
+            class="btn preset-filled"
+            onclick={handleTranslate}
+            aria-label="logout"
+        >
             {$_('translate_text')}
         </button>
     </div>

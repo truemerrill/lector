@@ -1,35 +1,29 @@
-import type { Flashcard } from "$lib/types";
+import type { Flashcard } from '$lib/types';
 // import AnkiExport from 'anki-apkg-export';
 
-
-export async function create(
-    front: string,
-    back: string
-): Promise<Flashcard> {
+export async function create(front: string, back: string): Promise<Flashcard> {
     const url = new URL('/api/card', location.origin);
     const res = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({
             front: front,
             back: back
         }),
-        headers: { "Content-Type": "application/json "}
+        headers: { 'Content-Type': 'application/json ' }
     });
 
     const card = await res.json();
     return card;
 }
 
-
 export async function clear(): Promise<Flashcard[]> {
     const url = new URL('/api/card', location.origin);
     const res = await fetch(url, {
-        method: "DELETE",
+        method: 'DELETE'
     });
     const cards = await res.json();
-    return cards; 
+    return cards;
 }
-
 
 export async function save() {
     const url = new URL('/api/card/export', location.origin);

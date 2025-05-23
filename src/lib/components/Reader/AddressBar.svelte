@@ -32,7 +32,6 @@
             browser = await load(browser, browser.urlString);
         }
     }
-
 </script>
 
 <div
@@ -72,10 +71,7 @@
         }
 
         button:hover {
-            background-color: light-dark(
-                var(--color-surface-200), 
-                var(--color-surface-800)
-            );
+            background-color: light-dark(var(--color-surface-200), var(--color-surface-800));
         }
 
         .url {

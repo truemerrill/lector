@@ -9,10 +9,11 @@ export const userTable = sqliteTable('user', {
     langInterface: text()
 });
 
-
 export const flashcardTable = sqliteTable('flashcard', {
     id: int().primaryKey({ autoIncrement: true }),
-    userId: int().notNull().references(() => userTable.id),
+    userId: int()
+        .notNull()
+        .references(() => userTable.id),
     front: text().notNull(),
     back: text().notNull()
 });

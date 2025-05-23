@@ -4,7 +4,6 @@ import { userTable, flashcardTable } from '$lib/db/schema';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 
-
 export const GET: RequestHandler = async (event) => {
     const session = await event.locals.auth();
 
@@ -24,14 +23,12 @@ export const GET: RequestHandler = async (event) => {
     return new Response(JSON.stringify(cards), {
         headers: { 'Content-Type': 'application/json' }
     });
-}
-
+};
 
 const CardSchema = z.object({
     front: z.string().min(1),
     back: z.string().min(1)
 });
-
 
 export const POST: RequestHandler = async (event) => {
     const session = await event.locals.auth();
@@ -39,7 +36,8 @@ export const POST: RequestHandler = async (event) => {
         return new Response(null, { status: 401, statusText: 'Unauthorized' });
     }
 
-    const [{ userId }] = await db.select({ userId: userTable.id })
+    const [{ userId }] = await db
+        .select({ userId: userTable.id })
         .from(userTable)
         .where(eq(userTable.email, session.user.email))
         .limit(1);
@@ -64,8 +62,7 @@ export const POST: RequestHandler = async (event) => {
     return new Response(JSON.stringify(card), {
         headers: { 'Content-Type': 'application/json' }
     });
-}
-
+};
 
 export const DELETE: RequestHandler = async (event) => {
     const session = await event.locals.auth();
@@ -73,15 +70,17 @@ export const DELETE: RequestHandler = async (event) => {
         return new Response(null, { status: 401, statusText: 'Unauthorized' });
     }
 
-    const [{ userId }] = await db.select({ userId: userTable.id })
+    const [{ userId }] = await db
+        .select({ userId: userTable.id })
         .from(userTable)
         .where(eq(userTable.email, session.user.email))
         .limit(1);
-    const cards = await db.delete(flashcardTable)
+    const cards = await db
+        .delete(flashcardTable)
         .where(eq(flashcardTable.userId, userId))
         .returning();
 
     return new Response(JSON.stringify(cards), {
         headers: { 'Content-Type': 'application/json' }
     });
-}
+};

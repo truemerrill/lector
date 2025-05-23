@@ -12,7 +12,7 @@
     let {
         userSettings = $bindable(),
         tool = $bindable(),
-        browser,
+        browser
     }: {
         userSettings: UserSettings | undefined;
         tool: Tool | undefined;
@@ -32,11 +32,11 @@
     {#if tool !== undefined && userSettings !== undefined}
         <div class="card h-full">
             {#if tool === 'translate'}
-                <Translate userSettings={userSettings} browser={browser} />
+                <Translate {userSettings} {browser} />
             {:else if tool === 'dictionary'}
                 <Dictionary />
             {:else if tool === 'flashcard'}
-                <Flashcard userSettings={userSettings} browser={browser} />
+                <Flashcard {userSettings} {browser} />
             {:else if tool === 'account'}
                 <Account bind:userSettings bind:tool />
             {:else}
@@ -49,5 +49,3 @@
         </div>
     {/if}
 </Drawer>
-
-

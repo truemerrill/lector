@@ -16,8 +16,8 @@ export interface Browser {
 }
 
 export interface Translation {
-    translatedText: string,
-    alternatives?: string[]
+    translatedText: string;
+    alternatives?: string[];
 }
 
 export type Translator = (text: string, source: Language, target: Language) => Promise<Translation>;

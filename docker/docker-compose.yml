@@ -1,17 +1,16 @@
 services:
-  app:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - translate
+    app:
+        build:
+            context: ..
+            dockerfile: docker/Dockerfile
+        ports:
+            - '3000:3000'
+        depends_on:
+            - translate
 
-  translate:
-    image: libretranslate/libretranslate:latest
-    ports:
-      - "5000:5000"
-    environment:
-      - HTTP_PORT=5000
-  
+    translate:
+        image: libretranslate/libretranslate:latest
+        ports:
+            - '5000:5000'
+        environment:
+            - HTTP_PORT=5000

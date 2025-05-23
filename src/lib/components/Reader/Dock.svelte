@@ -28,7 +28,7 @@
     } = $props();
 </script>
 
-<div class="fixed flex flex-col h-full justify-center">
+<div class="fixed flex h-full flex-col justify-center">
     <aside class="dock flex-none">
         {#if tiles}
             <nav
@@ -52,14 +52,8 @@
     .dock {
         z-index: 11;
         border-radius: 10px;
-        border-color: light-dark(
-            var(--color-surface-200),
-            var(--color-surface-800)
-        );
+        border-color: light-dark(var(--color-surface-200), var(--color-surface-800));
         border-width: 1pt;
-        background-color: light-dark(
-            var(--color-surface-100), 
-            var(--color-surface-900)
-        );
+        background-color: light-dark(var(--color-surface-100), var(--color-surface-900));
     }
 </style>

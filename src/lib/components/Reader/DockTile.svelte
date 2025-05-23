@@ -17,7 +17,7 @@
     aria-label="nav-item"
     tabindex="0"
     class="dock-tile flex aspect-square w-full flex-col items-center justify-center gap-1 p-2"
-    onclick={onclick}
+    {onclick}
 >
     {#if children}
         <div>
@@ -36,9 +36,6 @@
     }
 
     .dock-tile:hover {
-        background-color: light-dark(
-            var(--color-surface-200), 
-            var(--color-surface-800)
-        );
+        background-color: light-dark(var(--color-surface-200), var(--color-surface-800));
     }
 </style>
