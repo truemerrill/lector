@@ -21,3 +21,8 @@ export interface Translation {
 }
 
 export type Translator = (text: string, source: Language, target: Language) => Promise<Translation>;
+
+export interface Flashcard {
+    front: string;
+    back: string;
+}
