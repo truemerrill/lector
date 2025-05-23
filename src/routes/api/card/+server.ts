@@ -18,10 +18,12 @@ export const GET: RequestHandler = async (event) => {
             back: flashcardTable.back
         })
         .from(flashcardTable)
-        .leftJoin(userTable, eq(userTable.id, flashcardTable.userId))
+        .innerJoin(userTable, eq(userTable.id, flashcardTable.userId))
         .where(eq(userTable.email, session.user.email));
 
-    return new Response(JSON.stringify(cards));
+    return new Response(JSON.stringify(cards), {
+        headers: { 'Content-Type': 'application/json' }
+    });
 }
 
 
@@ -37,7 +39,10 @@ export const POST: RequestHandler = async (event) => {
         return new Response(null, { status: 401, statusText: 'Unauthorized' });
     }
 
-    const [{ userId }] = await db.select({ userId: userTable.id }).from(userTable).where(eq(userTable.email, session.user.email)).limit(1);
+    const [{ userId }] = await db.select({ userId: userTable.id })
+        .from(userTable)
+        .where(eq(userTable.email, session.user.email))
+        .limit(1);
 
     /* Validation */
     let data;
@@ -47,7 +52,7 @@ export const POST: RequestHandler = async (event) => {
         return new Response(null, { status: 400, statusText: 'Invalid request' });
     }
 
-    const [ card ] = await db
+    const [card] = await db
         .insert(flashcardTable)
         .values({
             userId: userId,
@@ -56,7 +61,9 @@ export const POST: RequestHandler = async (event) => {
         })
         .returning();
 
-    return new Response(JSON.stringify(card));
+    return new Response(JSON.stringify(card), {
+        headers: { 'Content-Type': 'application/json' }
+    });
 }
 
 
@@ -66,11 +73,15 @@ export const DELETE: RequestHandler = async (event) => {
         return new Response(null, { status: 401, statusText: 'Unauthorized' });
     }
 
-    const [{ userId }] = await db.select({ userId: userTable.id }).from(userTable).where(eq(userTable.email, session.user.email)).limit(1);
-    const cards = await db
-        .delete(flashcardTable)
+    const [{ userId }] = await db.select({ userId: userTable.id })
+        .from(userTable)
+        .where(eq(userTable.email, session.user.email))
+        .limit(1);
+    const cards = await db.delete(flashcardTable)
         .where(eq(flashcardTable.userId, userId))
         .returning();
 
-    return new Response(JSON.stringify(cards));
+    return new Response(JSON.stringify(cards), {
+        headers: { 'Content-Type': 'application/json' }
+    });
 }

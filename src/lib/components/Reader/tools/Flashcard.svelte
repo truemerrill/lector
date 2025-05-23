@@ -3,7 +3,7 @@
     import type { UserSettings } from '$lib/db/types';
     import { _ } from 'svelte-i18n';
     import { libreTranslate } from '$lib/translate';
-    import { create, clear } from '$lib/flashcard';
+    import { create, clear, save } from '$lib/flashcard';
     import { toaster } from '../toaster';
     
     let {
@@ -36,7 +36,7 @@
     }
 
     async function handleExport(event: MouseEvent): Promise<void> {
-        
+        await save();
     }
 
     async function handleClear(event: MouseEvent): Promise<void> {

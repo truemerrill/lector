@@ -1,4 +1,5 @@
 import type { Flashcard } from "$lib/types";
+// import AnkiExport from 'anki-apkg-export';
 
 
 export async function create(
@@ -27,4 +28,19 @@ export async function clear(): Promise<Flashcard[]> {
     });
     const cards = await res.json();
     return cards; 
+}
+
+
+export async function save() {
+    const url = new URL('/api/card/export', location.origin);
+    const res = await fetch(url);
+    const blob = await res.blob();
+
+    // Save binary as a file on the client side
+    const blobURL = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobURL;
+    a.download = 'flashcards.apkg';
+    a.click();
+    URL.revokeObjectURL(blobURL);
 }
