@@ -1,6 +1,6 @@
 import type { RequestHandler } from './$types';
 import { LanguageEnum } from '$lib/lang';
-import { LIBRE_TRANSLATE_URL, LIBRE_TRANSLATE_API_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { z } from 'zod';
 
 const Format = z.enum(['text', 'html']);
@@ -26,11 +26,11 @@ export const POST: RequestHandler = async (event) => {
         return new Response(null, { status: 400, statusText: 'Invalid request' });
     }
 
-    const res = await fetch(`${LIBRE_TRANSLATE_URL}/translate`, {
+    const res = await fetch(`${env.LIBRE_TRANSLATE_URL}/translate`, {
         method: 'POST',
         body: JSON.stringify({
             ...data,
-            api_key: LIBRE_TRANSLATE_API_KEY
+            api_key: env.LIBRE_TRANSLATE_API_KEY
         }),
         headers: { 'Content-Type': 'application/json' }
     });

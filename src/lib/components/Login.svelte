@@ -1,8 +1,18 @@
+<svelte:options runes={false} />
+
 <script lang="ts">
     import { signIn } from '@auth/sveltekit/client';
+    
     import { _ } from 'svelte-i18n';
     import { siGithub } from 'simple-icons';
+
+    function handleLogin() {
+        signIn('github', {
+            redirect: true
+        })
+    }
 </script>
+
 
 <div class="centered full-screen">
     <div class="card min-w-sm overflow-hidden shadow-lg">
@@ -15,7 +25,7 @@
                 <button
                     type="button"
                     class="btn preset-filled w-full"
-                    onclick={() => signIn('github')}
+                    onclick={handleLogin}
                     aria-label="login"
                 >
                     <div class="centered">

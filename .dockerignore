@@ -1,0 +1,7 @@
+node_modules
+build
+.env
+.svelte-kit
+.dockerignore
+.vscode
+*.db
