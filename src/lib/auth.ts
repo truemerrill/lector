@@ -5,5 +5,4 @@ export const { handle, signIn } = SvelteKitAuth({
     providers: [GitHub],
     secret: process.env.AUTH_SECRET,
     trustHost: true,
-    debug: true
 });

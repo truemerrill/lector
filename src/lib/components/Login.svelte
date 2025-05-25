@@ -5,12 +5,6 @@
     
     import { _ } from 'svelte-i18n';
     import { siGithub } from 'simple-icons';
-
-    function handleLogin() {
-        signIn('github', {
-            redirect: true
-        })
-    }
 </script>
 
 
@@ -25,7 +19,7 @@
                 <button
                     type="button"
                     class="btn preset-filled w-full"
-                    onclick={handleLogin}
+                    onclick={() => signIn('github')}
                     aria-label="login"
                 >
                     <div class="centered">

@@ -4,7 +4,7 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "dev": "vite dev --port 3000",
+        "dev": "vite dev --port 3000 --host 0.0.0.0",
         "build": "vite build",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",
@@ -50,6 +50,7 @@
         "vitest": "^3.0.0"
     },
     "dependencies": {
+        "@auth/core": "^0.39.1",
         "@auth/sveltekit": "^1.9.2",
         "@libsql/client": "^0.15.6",
         "@mozilla/readability": "^0.6.0",
