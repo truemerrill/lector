@@ -1,10 +1,4 @@
-import { drizzle } from 'drizzle-orm/libsql';
-import { createClient } from '@libsql/client';
-import { DB_FILE_NAME } from '$env/static/private';
-import * as schema from './schema';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { DATABASE_URL } from '$env/static/private';
 
-const client = createClient({
-    url: DB_FILE_NAME
-});
-
-export const db = drizzle(client, { schema });
+export const db = drizzle(DATABASE_URL);

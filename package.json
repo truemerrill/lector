@@ -29,6 +29,7 @@
         "@tailwindcss/vite": "^4.0.0",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/svelte": "^5.2.4",
+        "@types/pg": "^8.15.2",
         "drizzle-kit": "^0.31.1",
         "eslint": "^9.18.0",
         "eslint-config-prettier": "^10.0.1",
@@ -52,11 +53,11 @@
     "dependencies": {
         "@auth/core": "^0.39.1",
         "@auth/sveltekit": "^1.9.2",
-        "@libsql/client": "^0.15.6",
         "@mozilla/readability": "^0.6.0",
         "anki-apkg-export": "^4.0.3",
         "dompurify": "^3.2.5",
         "drizzle-orm": "^0.43.1",
+        "pg": "^8.16.0",
         "zod": "^3.24.4"
     }
 }
