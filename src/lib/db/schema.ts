@@ -1,7 +1,7 @@
-import { int, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { pgTable, text, integer, serial } from 'drizzle-orm/pg-core';
 
-export const userTable = sqliteTable('user', {
-    id: int().primaryKey({ autoIncrement: true }),
+export const userTable = pgTable('user', {
+    id: serial().primaryKey(),
     email: text().notNull().unique(),
     name: text().notNull(),
     langNative: text(),
@@ -9,9 +9,9 @@ export const userTable = sqliteTable('user', {
     langInterface: text()
 });
 
-export const flashcardTable = sqliteTable('flashcard', {
-    id: int().primaryKey({ autoIncrement: true }),
-    userId: int()
+export const flashcardTable = pgTable('flashcard', {
+    id: serial().primaryKey(),
+    userId: integer()
         .notNull()
         .references(() => userTable.id),
     front: text().notNull(),
