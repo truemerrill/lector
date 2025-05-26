@@ -18,6 +18,10 @@ export async function libreTranslate(
         headers: { 'Content-Type': 'application/json' }
     });
 
+    if (!res.ok) {
+        console.error(res);
+    }
+
     const translation = await res.json();
     return translation;
 }
