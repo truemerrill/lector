@@ -40,7 +40,7 @@
         <h3 class="h3">{$_('account')}</h3>
         <button
             type="button"
-            class="btn preset-filled"
+            class="btn preset-filled-primary-500"
             onclick={() => signOut()}
             aria-label="logout"
         >
@@ -87,7 +87,7 @@
 
     <div>
         <hr class="hr mt-4 mb-4" />
-        <button type="button" class="btn preset-filled" onclick={handleSave} aria-label="logout">
+        <button type="button" class="btn preset-filled-primary-500" onclick={handleSave} aria-label="logout">
             {$_('save_settings')}
         </button>
     </div>

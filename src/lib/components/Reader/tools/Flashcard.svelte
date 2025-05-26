@@ -69,7 +69,7 @@
                 {#if translation === ''}
                     <button
                         type="button"
-                        class="btn preset-filled"
+                        class="btn preset-filled-primary-500"
                         onclick={handleTranslate}
                         aria-label="logout"
                     >
@@ -78,7 +78,7 @@
                 {:else}
                     <button
                         type="button"
-                        class="btn preset-filled"
+                        class="btn preset-filled-primary-500"
                         onclick={handleSave}
                         aria-label="logout"
                     >
@@ -91,7 +91,7 @@
 
     <div>
         <hr class="hr mt-4 mb-4" />
-        <button type="button" class="btn preset-filled" onclick={handleExport} aria-label="logout">
+        <button type="button" class="btn preset-filled-primary-500" onclick={handleExport} aria-label="logout">
             {$_('export_to_anki')}
         </button>
         <button

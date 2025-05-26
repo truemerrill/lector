@@ -1,5 +1,4 @@
 import type { Flashcard } from '$lib/types';
-// import AnkiExport from 'anki-apkg-export';
 
 export async function create(front: string, back: string): Promise<Flashcard> {
     const url = new URL('/api/card', location.origin);
