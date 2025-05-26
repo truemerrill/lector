@@ -36,7 +36,7 @@ export const POST: RequestHandler = async (event) => {
     });
 
     if (!res.ok) {
-        console.error({ status: res.status, statusText: res.statusText });
+        console.error(res);
         return new Response(null, { status: res.status, statusText: res.statusText });
     } else {
         const result = await res.json();
