@@ -14,7 +14,7 @@
         { lang: 'ko', text: '중요한 내용을 읽으며 언어를 배우세요.' },
         { lang: 'de', text: 'Lerne Sprachen, indem du liest, was dir wichtig ist.' },
         { lang: 'ru', text: 'Изучайте языки, читая то, что важно для вас.' },
-        { lang: 'po', text: 'Ucz się języków, czytając to, co dla ciebie ważne.' },
+        { lang: 'pl', text: 'Ucz się języków, czytając to, co dla ciebie ważne.' },
         { lang: 'es', text: 'Aprende idiomas leyendo lo que te importa.' }
     ];
 
