@@ -2,12 +2,48 @@ services:
     app:
         build:
             dockerfile: Dockerfile
+        environment:
+            - ORIGIN=http://localhost:3000
+            - DATABASE_URL=postgres://postgres:password@postgres:5432/lector
         env_file:
             - .env
         ports:
             - '3000:3000'
         depends_on:
+            - postgres
             - translate
+
+        # Note: We have to apply the database schema before launching the app,
+        #   but we can't do it inside the Dockerfile because it is shared by
+        #   fly.io.  Instead we override the command here to apply drizzle-kit
+        #   schema before launching the main process
+
+        command: >
+            sh -c "
+                apt-get update && apt-get install -y postgresql-client;
+
+                echo 'Creating lector database if missing ...';
+                PGPASSWORD=password psql -h postgres -U postgres -tc \"SELECT 1 FROM pg_database WHERE datname = 'lector'\" | grep -q 1 || \
+                PGPASSWORD=password createdb -h postgres -U postgres lector;
+                
+                echo 'Running drizzle-kit push ...';
+                npx drizzle-kit push;
+                
+                echo 'Starting app ...';
+                node build
+            "
+
+    postgres:
+        image: postgres:17.5
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=lector
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./data:/var/lib/postgresql/data
+        restart: unless-stopped
 
     translate:
         image: libretranslate/libretranslate:latest
