@@ -1,6 +1,6 @@
 export type Tool = 'translate' | 'dictionary' | 'flashcard' | 'account';
 
-export type Language = 'en' | 'es' | 'eo';
+export type Language = 'en' | 'es' | 'eo' | 'fr' | 'de' | 'it' | 'ru' | 'uk' | 'po' | 'ko' | 'jp' | 'zh';
 
 /**
  * The browser state

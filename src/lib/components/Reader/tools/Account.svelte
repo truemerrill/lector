@@ -40,7 +40,7 @@
         <h3 class="h3">{$_('account')}</h3>
         <button
             type="button"
-            class="btn preset-filled"
+            class="btn preset-filled-primary-500"
             onclick={() => signOut()}
             aria-label="logout"
         >
@@ -62,24 +62,51 @@
                 <span class="label-text">{$_('native_language')}</span>
                 <select class="select" bind:value={userSettings.langNative}>
                     <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="de">Deutsch</option>
                     <option value="es">Español</option>
                     <option value="eo">Esperanto</option>
+                    <option value="fr">Français</option>
+                    <option value="it">Italiano</option>
+                    <option value="jp">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="pl">Polski</option>
+                    <option value="ru">Русский</option>
+                    <option value="uk">Українська</option>
                 </select>
             </label>
             <label class="label">
                 <span class="label-text">{$_('target_language')}</span>
                 <select class="select" bind:value={userSettings.langTarget}>
                     <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="de">Deutsch</option>
                     <option value="es">Español</option>
                     <option value="eo">Esperanto</option>
+                    <option value="fr">Français</option>
+                    <option value="it">Italiano</option>
+                    <option value="jp">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="pl">Polski</option>
+                    <option value="ru">Русский</option>
+                    <option value="uk">Українська</option>
                 </select>
             </label>
             <label class="label">
                 <span class="label-text">{$_('ui_language')}</span>
                 <select class="select" bind:value={userSettings.langInterface}>
                     <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="de">Deutsch</option>
                     <option value="es">Español</option>
                     <option value="eo">Esperanto</option>
+                    <option value="fr">Français</option>
+                    <option value="it">Italiano</option>
+                    <option value="jp">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="pl">Polski</option>
+                    <option value="ru">Русский</option>
+                    <option value="uk">Українська</option>
                 </select>
             </label>
         </form>
@@ -87,7 +114,7 @@
 
     <div>
         <hr class="hr mt-4 mb-4" />
-        <button type="button" class="btn preset-filled" onclick={handleSave} aria-label="logout">
+        <button type="button" class="btn preset-filled-primary-500" onclick={handleSave} aria-label="logout">
             {$_('save_settings')}
         </button>
     </div>

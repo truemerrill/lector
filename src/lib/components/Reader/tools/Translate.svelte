@@ -47,7 +47,7 @@
         <hr class="hr mt-4 mb-4" />
         <button
             type="button"
-            class="btn preset-filled"
+            class="btn preset-filled-primary-500"
             onclick={handleTranslate}
             aria-label="logout"
         >

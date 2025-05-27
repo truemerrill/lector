@@ -3,6 +3,7 @@
     import AddressBar from './AddressBar.svelte';
     import './browser.css';
     import { goto } from './browser';
+    import Logo from '$lib/components/Logo.svelte';
 
     let {
         browser = $bindable()
@@ -52,7 +53,15 @@
             {#if browser.content}
                 {@html browser.content.outerHTML}
             {:else}
-                <a href="https://google.com" class="a">Google</a>
+                <div class="flex flex-col h-screen justify-center">
+                    <div class="mx-auto w-[300px] opacity-50">
+                        <Logo
+                            classLogo="fill-primary-400 stroke-primary-500"
+                            classText="fill-surface-800-200"
+                            showText={true}
+                        />
+                    </div>
+                </div>
             {/if}
         </div>
     </div>
